@@ -1,5 +1,5 @@
 {
-  "name": "abc-book-keeping",
+  "name": "easy-strata",
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
@@ -50,8 +50,10 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "imagemin-webpack-plugin": "^2.1.5",
+    "node-sass": "^4.9.0",
     "nsp": "^2.1.0",
     "popper.js": "^1.14.3",
+    "sass-loader": "^7.0.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",

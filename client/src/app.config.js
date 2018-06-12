@@ -37,20 +37,41 @@ const Config = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$l
         templateUrl: require('./views/index.html')
       })
 
-      .state('app.about', {
+      .state('app.home', {
         url: '/',
         controller: ['$timeout', ($timeout) => {
           $timeout(() => {
               window.prerenderReady = true;
           }, 500);
-
-          // init sweet btns
-          $('.sweet-btn').sweetButton();
         }],
-        templateUrl: require('./views/about/index.html'),
-        title: 'About',
-        description: "Located in British Columbia's Fraer Valley, I am a web developer and technology fanatic with several years of professional experience creating interactive web applications and business tools using an array of different technologies and system design methodologies."
-      });
+        templateUrl: require('./views/home/index.html'),
+        title: 'Home',
+        description: "Strata management software that is easy to use.."
+      })
+      
+      .state('app.services', {
+        url: '/services',
+        controller: ['$timeout', ($timeout) => {
+          $timeout(() => {
+              window.prerenderReady = true;
+          }, 500);
+        }],
+        templateUrl: require('./views/services/index.html'),
+        title: 'Services',
+        description: "Strata management software that is easy to use.."
+      })
+      
+      .state('app.pricing', {
+        url: '/pricing',
+        controller: ['$timeout', ($timeout) => {
+          $timeout(() => {
+              window.prerenderReady = true;
+          }, 500);
+        }],
+        templateUrl: require('./views/pricing/index.html'),
+        title: 'Pricing',
+        description: "Strata management software that is easy to use.."
+      });;
 
     // .state('app.contact', {
     //     url: '/contact',

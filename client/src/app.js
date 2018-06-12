@@ -3,7 +3,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap';
 import 'async';
-import sweetBtn            from './js/modules/sweet-btn/release/sweet-button';
+// import sweetBtn            from './js/modules/sweet-btn/release/sweet-button';
 import angular             from 'angular';
 
 // angular js
@@ -25,9 +25,7 @@ import '../../node_modules/font-awesome/css/font-awesome.css';
 import '../../node_modules/animate.css/animate.css';
 
 // sass
-// import './sass/main.scss';
-// import './sass/main-nav/main-nav.scss';
-// import './sass/view-transitions/view-transitions.scss';
+import './sass/main-nav.scss';
 
 const appname = 'app';  /** App and root module name */
 const deps    = [ /** All global dependencies */
