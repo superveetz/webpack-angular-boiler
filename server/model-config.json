@@ -14,10 +14,11 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "MongoDs",
     "public": false
   },
   "ACL": {
@@ -32,7 +33,15 @@
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "MongoDs",
     "public": false
+  },
+  "Email": {
+    "dataSource": "EmailDs"
+  },
+  "Account": {
+    "dataSource": "MongoDs",
+    "public": true,
+    "options": {}
   }
 }

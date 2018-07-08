@@ -1,28 +1,33 @@
 'use strict';
 
 // declare dependencies
-var loopback  = require('loopback');
-var boot      = require('loopback-boot');
-var path      = require('path');
-var ejs       = require('ejs');
+var loopback    = require('loopback');
+var boot        = require('loopback-boot');
+var path        = require('path');
+var ejs         = require('ejs');
+var bodyParser  = require('body-parser');
 
 // create app
 var app = module.exports = loopback();
+// define templating engine
+app.set('view engine', 'html'); // use .html file extension
+app.engine('html', ejs.renderFile); // use ejs to render .html views
+// configure body parser
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(loopback.token());
 
 // prerender for SEO
 // app.use(require('prerender-node').set('prerenderToken', 'Ljfb7lKGnBM0LrZnDrEu'));
 
+
 // set static files to allow static files to avoid using the router
 if (process.env.NODE_ENV === 'development') {
   app.use(loopback.static(path.resolve(__dirname, '../client/src/')));
+  app.set('views', __dirname + '/../client/src'); // set default views directory
 } else if (process.env.NODE_ENV === 'production') {
   app.use(loopback.static(path.resolve(__dirname, '../client/dist/')));
+  app.set('views', __dirname + '/../client/dist'); // set default views directory
 }
-
-// define templating engine
-app.set('view engine', 'html'); // use .html file extension
-app.engine('html', ejs.renderFile); // use ejs to render .html views
-app.set('views', __dirname + '/../client/dist'); // set default views directory
 
 // start app
 app.start = function() {

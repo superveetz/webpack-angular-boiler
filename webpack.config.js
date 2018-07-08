@@ -16,10 +16,17 @@ module.exports = {
     entry: {
         app: './client/src/app.js',
     },
+    devServer: {
+        port: 1337,
+        proxy: {
+            '/api': 'http://127.0.0.1:3002'
+        },
+        historyApiFallback: true
+    },
     output: {
         path: path.resolve(__dirname, 'client/dist/'),
         filename: 'bundle.js',
-        // publicPath: '/client/src' // not totally sure what this is for
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -63,44 +70,15 @@ module.exports = {
                 })
             },
             {
-                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader",
-                options: {
-                    name: '[path][name].[ext]',
-                    emitFile: false
-                }
-            }, 
-            {
-                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader",
-                options: {
-                    name: '[path][name].[ext]',
-                    emitFile: false
-                }
-            }, 
-            {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader",
-                options: {
-                    name: '[path][name].[ext]',
-                    emitFile: false
-                }
-            }, 
-            {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader",
-                options: {
-                    name: '[path][name].[ext]',
-                    emitFile: false
-                }
-            }, 
-            {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader",
-                options: {
-                    name: '[path][name].[ext]',
-                    emitFile: false
-                }
+                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        context: 'client/src/',
+                        outputPath: 'assets/fonts/',    // where the fonts will go
+                        name: '[name].[ext]',
+                    }
+                }]
             },
             {
                 test: /\.html$/,
@@ -153,10 +131,5 @@ module.exports = {
         ]),
         new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
         new CleanWebpackPlugin(['client/dist'])
-    ],
-    devServer: {
-        // contentBase: path.join(__dirname, "client/dist/"),
-        // compress: true,
-        port: 9000
-    }
+    ]
 };

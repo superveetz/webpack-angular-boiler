@@ -34,16 +34,41 @@ const Config = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$l
       .state('app', {
         abstract: true,
         url: '',
-        templateUrl: require('./views/index.html')
+        templateUrl: require('./views/index.html'),
+        controller: 'AppCtrl'
+      })
+
+      .state('app.verified', {
+        url: '/verified',
+        templateUrl: require('./views/verified/index.html'),
+        title: 'Account Verified',
+        description: "Strata management software that is easy to use.."
+      })
+
+      .state('app.reset-password', {
+        url: '/reset-password',
+        templateUrl: require('./views/reset-password/index.html'),
+        title: 'Reset Password',
+        controller: 'ResetPasswordCtrl'
+      })
+
+      .state('app.reset-password-verified', {
+        url: '/reset-password-verified?access_token',
+        templateUrl: require('./views/reset-password-verified/index.html'),
+        title: 'Password Reset',
+        controller: 'ResetPasswordVerifiedCtrl'
+      })
+
+      .state('app.login', {
+        url: '/login',
+        templateUrl: require('./views/login/index.html'),
+        title: 'Login',
+        controller: 'LoginCtrl'
       })
 
       .state('app.home', {
         url: '/',
-        controller: ['$timeout', ($timeout) => {
-          $timeout(() => {
-              window.prerenderReady = true;
-          }, 500);
-        }],
+        controller: 'HomeCtrl',
         templateUrl: require('./views/home/index.html'),
         title: 'Home',
         description: "Strata management software that is easy to use.."
@@ -71,8 +96,15 @@ const Config = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$l
         templateUrl: require('./views/pricing/index.html'),
         title: 'Pricing',
         description: "Strata management software that is easy to use.."
-      });;
+      })
 
+      .state('app.my-strata', {
+        url: '/my-strata',
+        controller: 'MyStrataCtrl',
+        templateUrl: require('./views/my-strata/index.html'),
+        title: 'My Strata',
+        description: "Strata management software that is easy to use.."
+      });
     // .state('app.contact', {
     //     url: '/contact',
     //     templateUrl: require('./views/contact/index.html'),

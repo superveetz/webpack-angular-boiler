@@ -1,7 +1,9 @@
 {
   "restApiRoot": "/api",
-  "host": "0.0.0.0",
+  "hostname": "easystrata.com",
+  "host": "localhost",
   "port": 3002,
+  "devServerPort": 1337,
   "remoting": {
     "context": false,
     "rest": {
